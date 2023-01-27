@@ -43,9 +43,28 @@ Pizza.prototype.calculateCost = function() {
 
 // User interface logic
 
+let myCart = new ShoppingCart();
+let myCurrentPizza = null;
+
 window.onload = function() {
   let form = document.querySelector("form");
   form.onsubmit = receiveForm
+  let addToCartButton = document.getElementById("addToCart");
+  addToCartButton.addEventListener("click", addCurrentPizzaToCart);
+}
+
+function addCurrentPizzaToCart() {
+  if(myCurrentPizza !== null) {
+    myCart.addToCart(myCurrentPizza);
+  }
+}
+
+function updateCartDisplay() {
+  let cartSpot = document.getElementById("cart");
+  cartSpot.innerText = "";
+  Object.keys(myCart.contents).forEach(function(key) {
+    document.createElement("div");
+  })
 }
 
 function receiveForm(event) {
@@ -58,8 +77,8 @@ function receiveForm(event) {
   let priceSpot = document.getElementById("price");
 
   if(sizeChoice !== false) {
-    let myUsersPizza = new Pizza(sizeChoice, toppingsChoices, discountChoice);
-    messageSpot.innerHTML = getPizzaInformationHTML(myUsersPizza);
+    myCurrentPizza = new Pizza(sizeChoice, toppingsChoices, discountChoice);
+    messageSpot.innerHTML = getPizzaInformationHTML(myCurrentPizza);
     priceSpot.innerText = myUsersPizza.calculateCost();
   } else {
     messageSpot.innerText = "You must select a size option."
