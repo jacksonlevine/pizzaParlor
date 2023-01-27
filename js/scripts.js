@@ -57,8 +57,22 @@ let myCurrentPizza = null;
 window.onload = function() {
   let form = document.querySelector("form");
   form.onsubmit = receiveForm
+
   let addToCartButton = document.getElementById("addToCart");
   addToCartButton.addEventListener("click", addCurrentPizzaToCart);
+
+  let cartSpot = document.getElementById("cart");
+  cartSpot.addEventListener("click", userClickOnCart);
+}
+
+function userClickOnCart(event) {
+  if(event.target.id === "delete") {
+    let idToDelete = event.target.parentNode.id;
+    myCart.deleteItem(idToDelete);
+    updateCartDisplay();
+  } else {
+    return false;
+  }
 }
 
 function addCurrentPizzaToCart() {
@@ -75,12 +89,17 @@ function updateCartDisplay() {
   totalPriceSpot.innerText = myCart.calculateTotalCost();
   Object.keys(myCart.contents).forEach(function(key) {
     let div = document.createElement("div");
+    div.setAttribute("id", key);
     let p1 = document.createElement("p");
     let p2 = document.createElement("p");
+    let delButton = document.createElement("button");
+    delButton.setAttribute("id", "delete");
+    delButton.innerText = "Delete pizza";
     p1.innerHTML = getPizzaInformationHTML(myCart.contents[key]);
     p2.innerText = myCart.contents[key].calculateCost();
     div.append(p1);
     div.append(p2);
+    div.append(delButton);
     cartSpot.append(div);
   })
 }
