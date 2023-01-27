@@ -27,9 +27,39 @@ function receiveForm(event) {
   event.preventDefault();
   let sizeChoice = getRadioInput("pizza_size");
   let toppingsChoices = getCheckboxInputs("toppings");
+  let messageSpot = document.getElementById("message");
+  let priceSpot = document.getElementById("price");
   if(sizeChoice !== false) {
-    
+    let myUsersPizza = new Pizza(sizeChoice, toppingsChoices);
+    messageSpot.innerHTML = displayPizzaInformation(myUsersPizza);
+    priceSpot.innerText = myUsersPizza.calculateCost();
+  } else {
+    messageSpot.innerText = "You must select a size option."
+    priceSpot.innerText = "";
   }
+}
+
+function displayPizzaInformation(pizza) {
+  if(pizza.toppings === false) {
+    let string = "You have created a " + capitalizeFirstLetter(pizza.size) + " pizza with no toppings."
+    return string;
+  } else {
+    let string = "You have created a " + capitalizeFirstLetter(pizza.size) + " pizza with the following toppings: <ul>"
+    pizza.toppings.forEach(function(topping) {
+      string += "<li>" + capitalizeFirstLetter(topping)+ "</li>"
+    })
+    string += "</ul>"
+    return string;
+  }
+  
+}
+
+function capitalizeFirstLetter(word) {
+  let arr = Array.from(word);
+  let firstLetter = arr.shift();
+  firstLetter = firstLetter.toUpperCase();
+  arr.unshift(firstLetter);
+  return arr.join("");
 }
 
 function getRadioInput(radioGroupName) {
