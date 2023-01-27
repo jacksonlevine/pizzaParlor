@@ -7,9 +7,9 @@
 }
 
 .output {
-  background-color: green;
-  color:red;
-  font-size:200%;
+  background-color: yellow;
+  color:green;
+  font-size:120%;
   font-weight: bold;
   max-width:400px;
 }
@@ -24,4 +24,12 @@
 body {
   display:flex;
   justify-content: center;
+}
+
+#cart div {
+  margin:10px;
+  background-color: green;
+  color:yellow;
+  font-weight:bold;
+  font-size:120%;
 }

@@ -57,13 +57,23 @@ function addCurrentPizzaToCart() {
   if(myCurrentPizza !== null) {
     myCart.addToCart(myCurrentPizza);
   }
+  updateCartDisplay();
 }
 
 function updateCartDisplay() {
   let cartSpot = document.getElementById("cart");
+  let totalPriceSpot = document.getElementById("totalPrice");
   cartSpot.innerText = "";
+  totalPriceSpot.innerText = myCart.calculateTotalCost();
   Object.keys(myCart.contents).forEach(function(key) {
-    document.createElement("div");
+    let div = document.createElement("div");
+    let p1 = document.createElement("p");
+    let p2 = document.createElement("p");
+    p1.innerHTML = getPizzaInformationHTML(myCart.contents[key]);
+    p2.innerText = myCart.contents[key].calculateCost();
+    div.append(p1);
+    div.append(p2);
+    cartSpot.append(div);
   })
 }
 
@@ -79,7 +89,7 @@ function receiveForm(event) {
   if(sizeChoice !== false) {
     myCurrentPizza = new Pizza(sizeChoice, toppingsChoices, discountChoice);
     messageSpot.innerHTML = getPizzaInformationHTML(myCurrentPizza);
-    priceSpot.innerText = myUsersPizza.calculateCost();
+    priceSpot.innerText = myCurrentPizza.calculateCost();
   } else {
     messageSpot.innerText = "You must select a size option."
     priceSpot.innerText = "";
