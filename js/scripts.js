@@ -12,6 +12,11 @@ Pizza.prototype.calculateCost = function() {
     small: 5
   }
   let cost = prices[this.size] + this.toppings.length;
+  if(this.discount.trim() !== "") {
+    if(this.discount.trim() === "REC") {
+      cost -= cost*0.15;
+    } 
+  }
   return "$" + cost;
 }
 
