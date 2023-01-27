@@ -19,3 +19,9 @@ Test: "It should return the calculated price with a 15% decrease if the discount
 Code: let pizz = new Pizza("large", ["pepperoni", "olives"], "REC");
 pizz.calculateCost();
 Expected output: "$14.45"
+
+Describe: ShoppingCart()
+Test: "It should return a ShoppingCart object with an initial currentId of 0 and an empty contents object inside."
+Code: let shop = new ShoppingCart();
+shop
+Expected output: ShoppingCart { currentId = 0, contents = {} }

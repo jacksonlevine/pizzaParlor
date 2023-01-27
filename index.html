@@ -6,35 +6,45 @@
   <title>Peppe's Pizza Parlor</title>
 </head>
 <body>
-  <form>
-    <h1>Peppe's Pizza Parlor!</h1>
-    <p>Select your size:</p>
-    <p class = "move"><input type="radio" id="large" name="pizza_size" value="large">
-    <label for="large">Large ($15)</label></p>
-    <p class = "move"><input type="radio" id="medium" name="pizza_size" value="medium">
-    <label for="medium">Medium ($10)</label></p>
-    <p class = "move"><input type="radio" id="small" name="pizza_size" value="small">
-    <label for="small">Small ($5)</label></p>
-    <p>Select any toppings (All toppings are $1):</p>
-    <p class = "move"><input type="checkbox" id="toppings1" name="toppings" value="pepperoni">
-    <label for="toppings1">Pepperoni</label></p>
-    <p class = "move"><input type="checkbox" id="toppings2" name="toppings" value="olives">
-    <label for="toppings2">Olives</label></p>
-    <p class = "move"><input type="checkbox" id="toppings3" name="toppings" value="red peppers">
-    <label for="toppings3">Red Peppers</label></p>
-    <p class = "move"><input type="checkbox" id="toppings4" name="toppings" value="anchovies">
-    <label for="toppings4">Anchovies</label></p>
-    <p class = "move"><input type="checkbox" id="toppings5" name="toppings" value="onions">
-    <label for="toppings5">Onions</label></p>
-    <p class = "move"><input type="checkbox" id="toppings6" name="toppings" value="garlic">
-    <label for="toppings6">Garlic</label></p>
-    <p><label for="discount">Discount code (optional) (Use REC for 15% off!):</label></p>
-    <p><input type="text" id="discount"></p>
-    <p><button type="submit">Create your pizza!</button></p>
-  </form>
-  <div class="output">
-    <p id="message"></p>
-    <p>Price: <span id="price"></span></p>
+  <div class="column">
+    <form>
+      <h1>Peppe's Pizza Parlor!</h1>
+      <p>Select your size:</p>
+      <p class = "move"><input type="radio" id="large" name="pizza_size" value="large">
+      <label for="large">Large ($15)</label></p>
+      <p class = "move"><input type="radio" id="medium" name="pizza_size" value="medium">
+      <label for="medium">Medium ($10)</label></p>
+      <p class = "move"><input type="radio" id="small" name="pizza_size" value="small">
+      <label for="small">Small ($5)</label></p>
+      <p>Select any toppings (All toppings are $1):</p>
+      <p class = "move"><input type="checkbox" id="toppings1" name="toppings" value="pepperoni">
+      <label for="toppings1">Pepperoni</label></p>
+      <p class = "move"><input type="checkbox" id="toppings2" name="toppings" value="olives">
+      <label for="toppings2">Olives</label></p>
+      <p class = "move"><input type="checkbox" id="toppings3" name="toppings" value="red peppers">
+      <label for="toppings3">Red Peppers</label></p>
+      <p class = "move"><input type="checkbox" id="toppings4" name="toppings" value="anchovies">
+      <label for="toppings4">Anchovies</label></p>
+      <p class = "move"><input type="checkbox" id="toppings5" name="toppings" value="onions">
+      <label for="toppings5">Onions</label></p>
+      <p class = "move"><input type="checkbox" id="toppings6" name="toppings" value="garlic">
+      <label for="toppings6">Garlic</label></p>
+      <p><label for="discount">Discount code (optional) (Use REC for 15% off!):</label></p>
+      <p><input type="text" id="discount"></p>
+      <p><button type="submit">Create your pizza!</button></p>
+    </form>
+    <div class="output">
+      <p id="message"></p>
+      <p>Price: <span id="price"></span></p>
+      <button id="addToCart">Add to cart</button>
+    </div>
+  </div>
+  <div class="column">
+    <h1>Your shopping cart:</h1>
+    <div id="cart">
+
+    </div>
+    <p>Total price: <span id="totalPrice"></span></p>
   </div>
 </body>
 </html>

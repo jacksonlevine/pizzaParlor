@@ -13,3 +13,15 @@
   font-weight: bold;
   max-width:400px;
 }
+
+.column {
+  display:flex;
+  flex-direction: column;
+  justify-content: left;
+  width:50%;
+}
+
+body {
+  display:flex;
+  justify-content: center;
+}

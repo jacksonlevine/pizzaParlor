@@ -38,7 +38,7 @@ function receiveForm(event) {
 
   if(sizeChoice !== false) {
     let myUsersPizza = new Pizza(sizeChoice, toppingsChoices, discountChoice);
-    messageSpot.innerHTML = getPizzaInformationContent(myUsersPizza);
+    messageSpot.innerHTML = getPizzaInformationHTML(myUsersPizza);
     priceSpot.innerText = myUsersPizza.calculateCost();
   } else {
     messageSpot.innerText = "You must select a size option."
@@ -46,12 +46,12 @@ function receiveForm(event) {
   }
 }
 
-function getPizzaInformationContent(pizza) {
+function getPizzaInformationHTML(pizza) {
   if(pizza.toppings === false) {
-    let string = "You have created a " + capitalizeFirstLetter(pizza.size) + " pizza with no toppings."
+    let string = capitalizeFirstLetter(pizza.size) + " pizza with no toppings."
     return string;
   } else {
-    let string = "You have created a " + capitalizeFirstLetter(pizza.size) + " pizza with the following toppings: <ul>"
+    let string = capitalizeFirstLetter(pizza.size) + " pizza with: <ul>"
     pizza.toppings.forEach(function(topping) {
       string += "<li>" + capitalizeFirstLetter(topping)+ "</li>"
     })
