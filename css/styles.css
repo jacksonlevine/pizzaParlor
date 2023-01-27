@@ -1,0 +1,15 @@
+.move {
+  transition: all 200ms ease-in-out;
+}
+
+.move:hover {
+  transform: translateX(10px);
+}
+
+.output {
+  background-color: green;
+  color:red;
+  font-size:200%;
+  font-weight: bold;
+  max-width:400px;
+}

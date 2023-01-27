@@ -16,22 +16,22 @@ Pizza.prototype.calculateCost = function() {
 
 // User interface logic
 
-onload = myLoadFunction
-
-function myLoadFunction() {
+window.onload = function() {
   let form = document.querySelector("form");
   form.onsubmit = receiveForm
 }
 
 function receiveForm(event) {
   event.preventDefault();
+
   let sizeChoice = getRadioInput("pizza_size");
   let toppingsChoices = getCheckboxInputs("toppings");
   let messageSpot = document.getElementById("message");
   let priceSpot = document.getElementById("price");
+
   if(sizeChoice !== false) {
     let myUsersPizza = new Pizza(sizeChoice, toppingsChoices);
-    messageSpot.innerHTML = displayPizzaInformation(myUsersPizza);
+    messageSpot.innerHTML = getPizzaInformationContent(myUsersPizza);
     priceSpot.innerText = myUsersPizza.calculateCost();
   } else {
     messageSpot.innerText = "You must select a size option."
@@ -39,7 +39,7 @@ function receiveForm(event) {
   }
 }
 
-function displayPizzaInformation(pizza) {
+function getPizzaInformationContent(pizza) {
   if(pizza.toppings === false) {
     let string = "You have created a " + capitalizeFirstLetter(pizza.size) + " pizza with no toppings."
     return string;
