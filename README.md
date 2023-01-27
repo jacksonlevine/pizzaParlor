@@ -33,3 +33,13 @@ let pizz = new Pizza("Test", ["Test", "Test"], "Test");
 shop.addToCart(pizz);
 shop.contents
 Expected output: contents { 1: Pizza {size: "Test", toppings: ["Test", "Test"], discount: "Test"} }
+
+Describe: ShoppingCart.calculateTotalCost()
+Test: "It should return the sum of all Pizzas' costs in the shopping cart contents"
+Code: let shop = new ShoppingCart();
+let pizz = new Pizza("large", ["pepperoni", "olives"], "");
+let pizz2 = new Pizza("large", ["pepperoni", "olives"], "");
+shop.addToCart(pizz);
+shop.addToCart(pizz2);
+shop.calculateTotalCost();
+Expected output: "$34"
