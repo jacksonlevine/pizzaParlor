@@ -26,6 +26,7 @@ function receiveForm(event) {
 
   let sizeChoice = getRadioInput("pizza_size");
   let toppingsChoices = getCheckboxInputs("toppings");
+  let discountChoice = document.getElementById("discount").value;
   let messageSpot = document.getElementById("message");
   let priceSpot = document.getElementById("price");
 
