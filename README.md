@@ -28,3 +28,8 @@ Expected output: ShoppingCart { currentId = 0, contents = {} }
 
 Describe: ShoppingCart.addToCart()
 Test:"It should set the "<currentId>" property of ShoppingCart.contents to the Pizza that was passed as an argument and increment the ShoppingCart's currentId"
+Code: let shop = new ShoppingCart();
+let pizz = new Pizza("Test", ["Test", "Test"], "Test");
+shop.addToCart(pizz);
+shop.contents
+Expected output: contents { 1: Pizza {size: "Test", toppings: ["Test", "Test"], discount: "Test"} }
