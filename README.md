@@ -25,3 +25,6 @@ Test: "It should return a ShoppingCart object with an initial currentId of 0 and
 Code: let shop = new ShoppingCart();
 shop
 Expected output: ShoppingCart { currentId = 0, contents = {} }
+
+Describe: ShoppingCart.addToCart()
+Test:"It should set the "<currentId>" property of ShoppingCart.contents to the Pizza that was passed as an argument and increment the ShoppingCart's currentId"
