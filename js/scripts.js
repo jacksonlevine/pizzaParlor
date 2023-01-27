@@ -37,7 +37,7 @@ function receiveForm(event) {
   let priceSpot = document.getElementById("price");
 
   if(sizeChoice !== false) {
-    let myUsersPizza = new Pizza(sizeChoice, toppingsChoices);
+    let myUsersPizza = new Pizza(sizeChoice, toppingsChoices, discountChoice);
     messageSpot.innerHTML = getPizzaInformationContent(myUsersPizza);
     priceSpot.innerText = myUsersPizza.calculateCost();
   } else {
