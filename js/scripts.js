@@ -20,6 +20,14 @@ ShoppingCart.prototype.calculateTotalCost = function() {
   return "$" + cost;
 }
 
+ShoppingCart.prototype.deleteItem = function(id) {
+  if (this.contents[id] === undefined) {
+    return false;
+  }
+  delete this.contents[id];
+  return true;
+}
+
 function Pizza(size, toppings, discount) {
   this.size = size;
   this.toppings = toppings;
