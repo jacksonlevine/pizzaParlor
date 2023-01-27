@@ -44,7 +44,7 @@ Pizza.prototype.calculateCost = function() {
   if(this.discount.trim() !== "") {
     if(this.discount.trim() === "REC") {
       cost -= cost*0.15;
-    } 
+    }
   }
   return "$" + cost;
 }
@@ -135,7 +135,6 @@ function getPizzaInformationHTML(pizza) {
     string += "</ul>"
     return string;
   }
-  
 }
 
 function capitalizeFirstLetter(word) {
