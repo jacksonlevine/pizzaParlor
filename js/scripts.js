@@ -1,4 +1,9 @@
 // Business logic
+function ShoppingCart() {
+  this.currentId = 0;
+  this.contents = {};
+}
+
 function Pizza(size, toppings, discount) {
   this.size = size;
   this.toppings = toppings;
