@@ -43,3 +43,14 @@ shop.addToCart(pizz);
 shop.addToCart(pizz2);
 shop.calculateTotalCost();
 Expected output: "$34"
+
+Describe: ShoppingCart.deleteItem()
+Test: "It should delete the item with the specified id from (ShoppingCart).contents"
+Code: let shop = new ShoppingCart();
+let pizz = new Pizza("large", ["pepperoni", "olives"], "");
+let pizz2 = new Pizza("large", ["pepperoni", "cheese"], "");
+shop.addToCart(pizz);
+shop.addToCart(pizz2);
+shop.deleteItem(1);
+shop.contents
+Expected output: {2: {size: "large", toppings: ["pepperoni", "cheese"], discount: ""} }
