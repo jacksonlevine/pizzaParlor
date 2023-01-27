@@ -75,6 +75,16 @@ function userClickOnCart(event) {
   }
 }
 
+function getAsciiArtOfPizza(pizza) {
+  let pizzaWidth = 10;
+  let string = "<pre>";
+  for(let j = pizzaWidth; j > 0; j--) {
+    for(let i = 0; i < pizzaWidth; i++) {
+      
+    }
+  }
+}
+
 function addCurrentPizzaToCart() {
   if(myCurrentPizza !== null) {
     myCart.addToCart(myCurrentPizza);
