@@ -4,6 +4,11 @@ function ShoppingCart() {
   this.contents = {};
 }
 
+ShoppingCart.prototype.addToCart = function(pizza) {
+  this.currentId++;
+  this.contents[this.currentId] = pizza;
+}
+
 function Pizza(size, toppings, discount) {
   this.size = size;
   this.toppings = toppings;
