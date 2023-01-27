@@ -9,6 +9,17 @@ ShoppingCart.prototype.addToCart = function(pizza) {
   this.contents[this.currentId] = pizza;
 }
 
+ShoppingCart.prototype.calculateTotalCost = function() {
+  let cost = 0;
+  let keys = Object.keys(this.contents);
+  for(let i = 0; i < keys.length; i++) {
+    let pizzaCost = parseFloat(this.contents[keys[i]].calculateCost().slice(1));
+    cost += pizzaCost;
+  }
+
+  return "$" + cost;
+}
+
 function Pizza(size, toppings, discount) {
   this.size = size;
   this.toppings = toppings;
