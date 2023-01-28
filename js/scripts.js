@@ -212,7 +212,7 @@ function getAsciiArtOfPizza(pizza, pizzaWidth) {
           if(Math.random()*2 > 1) {
             console.log(pizza.toppings[Math.abs(Math.floor(Math.random()*pizza.toppings.length-1))]);
             console.log(Math.abs(Math.floor(Math.random()*pizza.toppings.length-1)));
-            string += representations[pizza.toppings[Math.min(Math.max(Math.floor(Math.random()*pizza.toppings.length-1), 0), pizza.toppings.length-1)]];
+            string += representations[pizza.toppings[Math.min(Math.max(Math.floor(Math.random()*pizza.toppings.length), 0), pizza.toppings.length-1)]];
           } else {
             string += "E";
           }
