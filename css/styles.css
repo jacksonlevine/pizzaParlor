@@ -43,13 +43,24 @@ body {
   font-weight:bold;
 }
 
+.headingContainer {
+  max-width:fit-content;
+  text-align: right;
+  line-height:50%;
+}
+
 .output .ascii {
   transform:translateX(-25px) translateY(-25px);
+}
+
+.secondContainer {
+  display:flex;
 }
 
 form h1 {
   font-size:300%;
   font-family:'Courier New', Courier, monospace;
+  white-space: nowrap;
 }
 
 .red {
@@ -67,4 +78,5 @@ form h1 {
 .beige {
   background-color: bisque;
   padding-bottom:100%;
+  min-width:fit-content;
 }

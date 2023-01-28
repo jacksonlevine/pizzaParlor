@@ -53,8 +53,12 @@ Pizza.prototype.calculateCost = function() {
 
 let myCart = new ShoppingCart();
 let myCurrentPizza = null;
+let headerPizza = new Pizza("medium", ['pepperoni', 'olives', 'red peppers'], "");
 
 window.onload = function() {
+  let header = document.querySelector(".secondContainer");
+  header.prepend(getAsciiDiv(headerPizza, 1));
+
   let form = document.querySelector("form");
   form.onsubmit = receiveForm
 
@@ -73,38 +77,6 @@ function userClickOnCart(event) {
   } else {
     return false;
   }
-}
-
-function getAsciiArtOfPizza(pizza, pizzaWidth) {
-  let representations = {
-    pepperoni: "<span class=\"red\">@</span>",
-    olives: "<span class=\"black\">o</span>",
-    "red peppers": "<span class=\"red\">V</span>",
-    anchovies: "<span class=\"grey\">q</span>",
-    onions: "<span class=\"grey\">O</span>",
-    garlic: "Q"
-  }
-
-  let string = "";
-  for(let j = pizzaWidth; j > 0; j--) {
-    for(let i = 0; i < pizzaWidth; i++) {
-      if(j === pizzaWidth || j === 1 || i === 0 || i === pizzaWidth-1) {
-        string += "#";
-      } else {
-        if(pizza.toppings.length > 0) {
-          if(Math.random()*2 > 1) {
-            string += representations[pizza.toppings[Math.abs(Math.floor(Math.random()*pizza.toppings.length-1))]];
-          } else {
-            string += "E";
-          }
-        } else {
-          string += "E";
-        }
-      }
-    }
-    string += "\n";
-  }
-  return string;
 }
 
 function addCurrentPizzaToCart() {
@@ -143,13 +115,6 @@ function updateCartDisplay() {
     div.append(delButton);
     cartSpot.append(div);
   })
-}
-
-function getAsciiDiv(pizza, scale) {
-  let asciiDiv = document.createElement("div");
-  asciiDiv.setAttribute("class", "ascii");
-  asciiDiv.innerHTML = getAsciiArtOfPizza(pizza, Math.round(asciiWidthsForPizzaSize[pizza.size]*scale));
-  return asciiDiv;
 }
 
 function receiveForm(event) {
@@ -218,4 +183,45 @@ function getCheckboxInputs(checkGroupName) {
   } else {
     return [];
   }
+}
+
+function getAsciiDiv(pizza, scale) {
+  let asciiDiv = document.createElement("div");
+  asciiDiv.setAttribute("class", "ascii");
+  asciiDiv.innerHTML = getAsciiArtOfPizza(pizza, Math.round(asciiWidthsForPizzaSize[pizza.size]*scale));
+  return asciiDiv;
+}
+
+function getAsciiArtOfPizza(pizza, pizzaWidth) {
+  let representations = {
+    pepperoni: "<span class=\"red\">@</span>",
+    olives: "<span class=\"black\">o</span>",
+    "red peppers": "<span class=\"red\">V</span>",
+    anchovies: "<span class=\"grey\">q</span>",
+    onions: "<span class=\"grey\">O</span>",
+    garlic: "Q"
+  }
+
+  let string = "";
+  for(let j = pizzaWidth; j > 0; j--) {
+    for(let i = 0; i < pizzaWidth; i++) {
+      if(j === pizzaWidth || j === 1 || i === 0 || i === pizzaWidth-1) {
+        string += "#";
+      } else {
+        if(pizza.toppings.length > 0) {
+          if(Math.random()*2 > 1) {
+            console.log(pizza.toppings[Math.abs(Math.floor(Math.random()*pizza.toppings.length-1))]);
+            console.log(Math.abs(Math.floor(Math.random()*pizza.toppings.length-1)));
+            string += representations[pizza.toppings[Math.min(Math.max(Math.floor(Math.random()*pizza.toppings.length-1), 0), pizza.toppings.length-1)]];
+          } else {
+            string += "E";
+          }
+        } else {
+          string += "E";
+        }
+      }
+    }
+    string += "\n";
+  }
+  return string;
 }
