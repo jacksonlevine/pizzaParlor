@@ -77,11 +77,11 @@ function userClickOnCart(event) {
 
 function getAsciiArtOfPizza(pizza, pizzaWidth) {
   let representations = {
-    pepperoni: "@",
-    olives: "o",
-    "red peppers": "V",
-    anchovies: "q",
-    onions: "O",
+    pepperoni: "<span class=\"red\">@</span>",
+    olives: "<span class=\"black\">o</span>",
+    "red peppers": "<span class=\"red\">V</span>",
+    anchovies: "<span class=\"grey\">q</span>",
+    onions: "<span class=\"grey\">O</span>",
     garlic: "Q"
   }
 
