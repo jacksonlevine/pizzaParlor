@@ -114,6 +114,12 @@ function addCurrentPizzaToCart() {
   updateCartDisplay();
 }
 
+asciiWidthsForPizzaSize = {
+  large: 11,
+  medium: 8,
+  small: 6
+}
+
 function updateCartDisplay() {
   let cartSpot = document.getElementById("cart");
   let totalPriceSpot = document.getElementById("totalPrice");
@@ -130,15 +136,20 @@ function updateCartDisplay() {
     delButton.innerText = "Delete pizza";
     p1.innerHTML = getPizzaInformationHTML(thePizza);
     p2.innerText = thePizza.calculateCost();
-    let asciiDiv = document.createElement("div");
-    asciiDiv.setAttribute("class", "ascii");
-    asciiDiv.innerHTML = getAsciiArtOfPizza(thePizza, 7);
+    let asciiDiv = getAsciiDiv(thePizza, 1);
     div.append(asciiDiv);
     div.append(p1);
     div.append(p2);
     div.append(delButton);
     cartSpot.append(div);
   })
+}
+
+function getAsciiDiv(pizza, scale) {
+  let asciiDiv = document.createElement("div");
+  asciiDiv.setAttribute("class", "ascii");
+  asciiDiv.innerHTML = getAsciiArtOfPizza(pizza, Math.round(asciiWidthsForPizzaSize[pizza.size]*scale));
+  return asciiDiv;
 }
 
 function receiveForm(event) {
@@ -152,7 +163,9 @@ function receiveForm(event) {
 
   if(sizeChoice !== false) {
     myCurrentPizza = new Pizza(sizeChoice, toppingsChoices, discountChoice);
+    let asciiDiv = getAsciiDiv(myCurrentPizza, 1.5)
     messageSpot.innerHTML = getPizzaInformationHTML(myCurrentPizza);
+    messageSpot.prepend(asciiDiv);
     priceSpot.innerText = myCurrentPizza.calculateCost();
   } else {
     messageSpot.innerText = "You must select a size option."

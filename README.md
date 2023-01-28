@@ -12,7 +12,7 @@
 3. Open index.html with any web browser.
 
 # Known Bugs:
-* None
+* A cheese pizza with no toppings will appear larger than the container in the shopping cart
 
 # Contact Me:
 * jack@netbug.us for any bug reports or questions!

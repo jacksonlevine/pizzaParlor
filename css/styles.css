@@ -3,7 +3,7 @@
 }
 
 .move:hover {
-  transform: translateX(10px);
+  transform: translateX(5px);
 }
 
 .output {
@@ -43,6 +43,15 @@ body {
   font-weight:bold;
 }
 
+.output .ascii {
+  transform:translateX(-25px) translateY(-25px);
+}
+
+form h1 {
+  font-size:300%;
+  font-family:'Courier New', Courier, monospace;
+}
+
 .red {
   color:rgb(128, 5, 5);
 }
@@ -53,4 +62,9 @@ body {
 
 .black {
   color:black;
+}
+
+.beige {
+  background-color: bisque;
+  padding-bottom:100%;
 }
