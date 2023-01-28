@@ -75,14 +75,36 @@ function userClickOnCart(event) {
   }
 }
 
-function getAsciiArtOfPizza(pizza) {
-  let pizzaWidth = 10;
-  let string = "<pre>";
+function getAsciiArtOfPizza(pizza, pizzaWidth) {
+  let representations = {
+    pepperoni: "@",
+    olives: "o",
+    "red peppers": "V",
+    anchovies: "q",
+    onions: "O",
+    garlic: "Q"
+  }
+
+  let string = "";
   for(let j = pizzaWidth; j > 0; j--) {
     for(let i = 0; i < pizzaWidth; i++) {
-      
+      if(j === pizzaWidth || j === 1 || i === 0 || i === pizzaWidth-1) {
+        string += "#";
+      } else {
+        if(pizza.toppings.length > 0) {
+          if(Math.random()*2 > 1) {
+            string += representations[pizza.toppings[Math.abs(Math.floor(Math.random()*pizza.toppings.length-1))]];
+          } else {
+            string += "E";
+          }
+        } else {
+          string += "E";
+        }
+      }
     }
+    string += "\n";
   }
+  return string;
 }
 
 function addCurrentPizzaToCart() {
@@ -98,6 +120,7 @@ function updateCartDisplay() {
   cartSpot.innerText = "";
   totalPriceSpot.innerText = myCart.calculateTotalCost();
   Object.keys(myCart.contents).forEach(function(key) {
+    let thePizza = myCart.contents[key];
     let div = document.createElement("div");
     div.setAttribute("id", key);
     let p1 = document.createElement("p");
@@ -105,8 +128,12 @@ function updateCartDisplay() {
     let delButton = document.createElement("button");
     delButton.setAttribute("id", "delete");
     delButton.innerText = "Delete pizza";
-    p1.innerHTML = getPizzaInformationHTML(myCart.contents[key]);
-    p2.innerText = myCart.contents[key].calculateCost();
+    p1.innerHTML = getPizzaInformationHTML(thePizza);
+    p2.innerText = thePizza.calculateCost();
+    let asciiDiv = document.createElement("div");
+    asciiDiv.setAttribute("class", "ascii");
+    asciiDiv.innerHTML = getAsciiArtOfPizza(thePizza, 7);
+    div.append(asciiDiv);
     div.append(p1);
     div.append(p2);
     div.append(delButton);
@@ -176,6 +203,6 @@ function getCheckboxInputs(checkGroupName) {
   if(arrayOfChoices.length > 0) {
     return arrayOfChoices;
   } else {
-    return false;
+    return [];
   }
 }

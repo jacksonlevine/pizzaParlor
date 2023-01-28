@@ -33,3 +33,24 @@ body {
   font-weight:bold;
   font-size:120%;
 }
+
+.ascii {
+  white-space: pre;
+  float:right;
+  font-size:100%;
+  line-height:70%;
+  font-family:monospace;
+  font-weight:bold;
+}
+
+.red {
+  color:rgb(128, 5, 5);
+}
+
+.grey {
+  color:grey;
+}
+
+.black {
+  color:black;
+}
