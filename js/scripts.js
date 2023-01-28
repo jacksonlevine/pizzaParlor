@@ -38,7 +38,8 @@ Pizza.prototype.calculateCost = function() {
   let prices = {
     large: 15,
     medium: 10,
-    small: 5
+    small: 5,
+    mega: 20
   }
   let cost = prices[this.size] + this.toppings.length;
   if(this.discount.trim() !== "") {
@@ -56,9 +57,6 @@ let myCurrentPizza = null;
 let headerPizza = new Pizza("medium", ['pepperoni', 'olives', 'red peppers'], "");
 
 window.onload = function() {
-  let header = document.querySelector(".secondContainer");
-  header.prepend(getAsciiDiv(headerPizza, 1));
-
   let form = document.querySelector("form");
   form.onsubmit = receiveForm
 
@@ -67,6 +65,30 @@ window.onload = function() {
 
   let cartSpot = document.getElementById("cart");
   cartSpot.addEventListener("click", userClickOnCart);
+
+  let header = document.querySelector(".secondContainer");
+  header.prepend(getAsciiDiv(headerPizza, 1));
+}
+
+function receiveForm(event) {
+  event.preventDefault();
+
+  let sizeChoice = getRadioInput("pizza_size");
+  let toppingsChoices = getCheckboxInputs("toppings");
+  let discountChoice = document.getElementById("discount").value;
+  let messageSpot = document.getElementById("message");
+  let priceSpot = document.getElementById("price");
+
+  if(sizeChoice !== false) {
+    myCurrentPizza = new Pizza(sizeChoice, toppingsChoices, discountChoice);
+    let asciiDiv = getAsciiDiv(myCurrentPizza, 1.5)
+    messageSpot.innerHTML = getPizzaInformationHTML(myCurrentPizza);
+    messageSpot.prepend(asciiDiv);
+    priceSpot.innerText = myCurrentPizza.calculateCost();
+  } else {
+    messageSpot.innerText = "You must select a size option."
+    priceSpot.innerText = "";
+  }
 }
 
 function userClickOnCart(event) {
@@ -87,6 +109,7 @@ function addCurrentPizzaToCart() {
 }
 
 asciiWidthsForPizzaSize = {
+  mega: 16,
   large: 11,
   medium: 8,
   small: 6
@@ -115,27 +138,6 @@ function updateCartDisplay() {
     div.append(delButton);
     cartSpot.append(div);
   })
-}
-
-function receiveForm(event) {
-  event.preventDefault();
-
-  let sizeChoice = getRadioInput("pizza_size");
-  let toppingsChoices = getCheckboxInputs("toppings");
-  let discountChoice = document.getElementById("discount").value;
-  let messageSpot = document.getElementById("message");
-  let priceSpot = document.getElementById("price");
-
-  if(sizeChoice !== false) {
-    myCurrentPizza = new Pizza(sizeChoice, toppingsChoices, discountChoice);
-    let asciiDiv = getAsciiDiv(myCurrentPizza, 1.5)
-    messageSpot.innerHTML = getPizzaInformationHTML(myCurrentPizza);
-    messageSpot.prepend(asciiDiv);
-    priceSpot.innerText = myCurrentPizza.calculateCost();
-  } else {
-    messageSpot.innerText = "You must select a size option."
-    priceSpot.innerText = "";
-  }
 }
 
 function getPizzaInformationHTML(pizza) {
@@ -210,8 +212,6 @@ function getAsciiArtOfPizza(pizza, pizzaWidth) {
       } else {
         if(pizza.toppings.length > 0) {
           if(Math.random()*2 > 1) {
-            console.log(pizza.toppings[Math.abs(Math.floor(Math.random()*pizza.toppings.length-1))]);
-            console.log(Math.abs(Math.floor(Math.random()*pizza.toppings.length-1)));
             string += representations[pizza.toppings[Math.min(Math.max(Math.floor(Math.random()*pizza.toppings.length), 0), pizza.toppings.length-1)]];
           } else {
             string += "E";
